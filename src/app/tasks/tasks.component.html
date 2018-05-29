@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <ul class="list-group" *ngFor="let task of tasks; let i = index ">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="customCheck{{task.id}}">
+        <label class="custom-control-label" for="customCheck{{task.id}}">
+          <input type="text" class="textArea" value="{{task.name}}" [disabled]="task.isDisabled">
+        </label>
+      </div>
+      <button (click)="onModify(i)" class="btn btn-success" *ngIf="task.isDisabled" style="margin-left: 45%;">Modifier</button>
+      <button (click)="onModify(i)" class="btn btn-success" *ngIf="!task.isDisabled" style="margin-left: 45%;">Ok</button>
+      <button (click)="onDelete(i)" class="btn btn-danger">X</button>
+    </li>
+  </ul>
+</div>
+<div style="padding-left: 25%; padding-right: 25%;">
+  <input type="text" class="form-control" placeholder="Nouvelle tache" id="inputDefault" [(ngModel)]="nameTask" autofocus>
+  <br>
+  <button type="button" class="btn btn-success" (click)="onAjout(nameTask)">Ajouter</button>
+</div>
+
